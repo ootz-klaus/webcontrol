@@ -1,0 +1,105 @@
+@import 'bootstrap/less/variables';
+@import 'font-awesome/less/variables';
+@import 'font-awesome/less/mixins';
+@import 'mixins/utils';
+@import 'fontface';
+
+//
+// Variables
+// --------------------------------------------------
+
+@font-family: 'Source Sans Pro', sans-serif;
+
+//== Colors
+@sidebar-default-bg: #e6e7e8;
+@sidebar-default-hover: darken(@sidebar-default-bg, 20%);
+@sidebar-default-color: #3f444c;
+@sidebar-default-link-active: #595f69;
+
+@sidebar-submenu-default-bg: #dfe0e2;
+
+body {
+    font-family: 'source_sans_proregular';
+    // font-family: @font-family;
+}
+
+.sidebar {
+    box-shadow: inset -1px 0 0 0 rgba(0,0,0,0.1);
+    background-color: @sidebar-default-bg;
+}
+
+.sidebar-left {
+    .nav.nav-menu {
+        li {
+            > .nav.nav-menu {
+                display: none;
+            }
+
+            a {
+                color: @sidebar-default-color;
+
+                span.fa, i.fa {   
+                    color: @sidebar-default-color;
+                    margin-left: 1px;
+                    margin-right: 8px;
+                    min-width: 15px;
+                    text-align: center;
+                    display: inline-block;
+                }
+
+                &:after {
+                    .fa-icon();
+                    .opacity(0);
+                    .transition(opacity, 0.2s, ease-in-out);
+                    content: @fa-var-angle-right;
+                    float: right;
+                    padding-top: 4px;
+                }
+            }
+
+            &.opened {
+                a:after {
+                    content: @fa-var-angle-down;
+                }
+            }
+
+            &.active {
+                a {
+                    background-color: @sidebar-default-link-active;
+                    color: #fff;
+
+                    span.fa, i.fa {   
+                        color: #fff;
+                    }
+
+                    &:after {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        li > .nav-menu {
+            padding: 5px 0;
+            background-color: @sidebar-submenu-default-bg;
+            box-shadow: inset -1px 0 0 0 rgba(0,0,0,0.1);
+
+            a {
+                padding: 5px 0 5px 38px;
+                &:after {
+                    content: "";
+                }
+            }
+        }
+    }
+
+    > .nav.nav-menu > li.opened {
+        > .nav.nav-menu {
+            display: block;
+        }
+    }
+    
+    &:hover .nav.nav-menu > li > a:after {
+        .opacity(1);
+    }
+}

@@ -1,0 +1,28 @@
+/**
+ * Create opacity
+ * 
+ * @param {number} @opacity: 0.5 Opacity level between 0 and 1
+ */
+.opacity(@opacity: 0.5) {
+    -moz-opacity: @opacity;
+    -khtml-opacity: @opacity;
+    -webkit-opacity: @opacity;
+    opacity: @opacity;
+    @opperc: @opacity * 100;
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+    filter: ~"alpha(opacity=@{opperc})";
+}
+
+/**
+ * Create transitions
+ * 
+ * @param  {string}        @property: all      Transitionable property
+ * @param  {string|number} @duration: 0.2s     Duration of transition in seconds
+ * @param  {string}        @ease:     ease-out Transition effect
+ */
+.transition(@property: all, @duration: 0.2s, @ease: ease-out) {
+    -webkit-transition: @property @duration @ease;
+    -moz-transition: @property @duration @ease;
+    -o-transition: @property @duration @ease;
+    transition: @property @duration @ease;
+}
