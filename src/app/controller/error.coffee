@@ -1,5 +1,5 @@
 ((window, app) -> 
-    app.controller 'DashboardController', ['$scope', ($scope) ->
+    app.controller 'ErrorController', ['$scope', ($scope) ->
         # console.log $scope
     ]
 )(window, window.WebControlApp)

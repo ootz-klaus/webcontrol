@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "number": 80,
+        "protocol": "TCP",
+        "description": "HTTP",
+        "status": true
+    },
+    {
+        "id": 2,
+        "number": 443,
+        "protocol": "TCP",
+        "description": "HTTPS",
+        "status": false
+    },
+    {
+        "id": 3,
+        "number": 22,
+        "protocol": "TCP",
+        "description": "SSH",
+        "status": true
+    }
+]

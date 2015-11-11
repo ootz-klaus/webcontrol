@@ -1,0 +1,25 @@
+.container-fluid
+    //- .col-xs-12.col-sm-12.col-md-6.col-lg-6
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+        .panel.panel-default
+            .panel-heading 
+                | Política Default
+            .panel-body
+                form(role="form")
+                    .form-group
+                        label.sr-only Buscar
+                        .form-group
+                            input.form-control(type="text" placeholder="Buscar" ng-model="searchText")
+
+            table.table
+                thead
+                    tr
+                        th Descrição
+                        th.text-center Porta
+                        th 
+                tbody
+                    tr(ng-repeat="port in ports | filter:searchText track by port.description" ng-init="$last ? bindBootstrapSwitchChangeEvent() : null")
+                        td {{ port.description }}
+                        td.text-center {{ port.number }}
+                        td.text-center
+                            input.bootstrapSwitch(type="checkbox" bs-switch ng-model="port.status" switch-on-text="Liberado" switch-off-text="Bloqueado" data-indeterminate="false" data-port-id="{{ port.id }}" data-port-number="{{ port.number }}" data-port-description="{{ port.description }}")

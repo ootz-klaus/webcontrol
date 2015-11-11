@@ -12,23 +12,35 @@
 
 //== Colors
 @sidebar-default-bg: #e6e7e8;
-@sidebar-default-hover: darken(@sidebar-default-bg, 20%);
+@sidebar-default-hover: darken(@sidebar-default-bg, 10%);
 @sidebar-default-color: #3f444c;
 @sidebar-default-link-active: #595f69;
 
 @sidebar-submenu-default-bg: #dfe0e2;
 
 body {
+    padding-top: 61px;
     font-family: 'source_sans_proregular';
     // font-family: @font-family;
 }
 
 .sidebar {
-    box-shadow: inset -1px 0 0 0 rgba(0,0,0,0.1);
+    .inner-shadow(-1px, 0, 0, 0.1);
     background-color: @sidebar-default-bg;
+    padding: 0;
+
+    .divider {
+        .inner-shadow(-1px, 0, 0, 0.1);
+        background-color: darken(@sidebar-default-bg, 10%);
+        height: 1px;
+        margin: 10px 0;
+        width: 100%;
+    }
 }
 
 .sidebar-left {
+    padding-top: 10px;
+
     .nav.nav-menu {
         li {
             > .nav.nav-menu {
@@ -55,6 +67,24 @@ body {
                     float: right;
                     padding-top: 4px;
                 }
+
+                &:hover,
+                &:visited {
+                    background-color: @sidebar-default-hover;
+                }
+
+                &.active {
+                    background-color: @sidebar-default-link-active !important;
+                    color: #fff;
+
+                    span.fa, i.fa {   
+                        color: #fff;
+                    }
+
+                    &:after {
+                        content: "";
+                    }
+                }
             }
 
             &.opened {
@@ -77,12 +107,44 @@ body {
                     }
                 }
             }
+
+            &.search {
+                form {
+                    position: relative;
+
+                    input {
+                        .inner-shadow(-1px, 0, 0, 0.1);
+                        background-color: @sidebar-default-hover;
+                        border: none;
+                        color: @sidebar-default-color;
+                        outline: none;
+                        padding: 11px 5px 10px 40px;
+                        width: 100%;
+                    }
+
+                    button {
+                        .opacity(0.5);
+                        background-color: transparent;
+                        border: none;
+                        color: @sidebar-default-color;
+                        left: 10px;
+                        padding-top: 11px;
+                        position: absolute;
+                        top: 0;
+
+                        &:active,
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
         }
 
         li > .nav-menu {
+            .inner-shadow(-1px, 0, 0, 0.1);
             padding: 5px 0;
             background-color: @sidebar-submenu-default-bg;
-            box-shadow: inset -1px 0 0 0 rgba(0,0,0,0.1);
 
             a {
                 padding: 5px 0 5px 38px;
@@ -99,7 +161,9 @@ body {
         }
     }
     
-    &:hover .nav.nav-menu > li > a:after {
-        .opacity(1);
+    &:hover .nav.nav-menu > li > a {
+        &:after {
+            .opacity(1);
+        }
     }
 }
